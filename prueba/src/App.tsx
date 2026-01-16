@@ -1,70 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Login } from './Components/Login/Login'
-
+import { useState } from 'react';
+import { useRoutes, Navigate } from 'react-router-dom';
+import './App.css';
+import { Login } from './Components/Login/Login';
+import Register from './Components/Register/Register';
 
 interface UserData {
-
   correo: string;
   contrasena: string;
 }
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState<UserData | null>(null);
 
   const handleLoginSuccess = (userData: UserData) => {
-
     setCurrentUser(userData);
-    setIsAuthenticated(true);
-  }
+    localStorage.setItem('currentUser', JSON.stringify(userData));
+  };
 
   const handleLogout = () => {
-
     localStorage.removeItem('currentUser');
     setCurrentUser(null);
-    setIsAuthenticated(false);
-  }
+  };
 
-  if (!isAuthenticated) {
-
-      return <Login onLoginSuccess={handleLoginSuccess} />;
+  // Rutas usando react-router
+  const routes = useRoutes([
+    {
+      path: "/login",
+      element: currentUser ? <Navigate to="/" /> : <Login onLoginSuccess={handleLoginSuccess} />
+    },
+    {
+      path: "/register",
+      element: currentUser ? <Navigate to="/" /> : <Register />
+    },
+    {
+      path: "/",
+      element: currentUser ? (
+        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+          <h2>Bienvenido, {currentUser.correo}</h2>
+          <button onClick={handleLogout}>Cerrar Sesión</button>
+        </div>
+      ) : (
+        <Navigate to="/login" />
+      )
+    },
+    {
+      path: "*",
+      element: <Navigate to="/" />
     }
+  ]);
 
-    <>
-      <div>Bienvenido, {currentUser?.correo}</div>
-      <button onClick={handleLogout}>Cerrar Sesión</button>
-    </>
-
-  return (
-
-
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  return routes;
 }
 
-export default App
+export default App;
