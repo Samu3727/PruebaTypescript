@@ -10,9 +10,8 @@ export const Login = () =>{
 
         e.preventDefault();
     }
-}
 
-return (
+    return (
 
     <div className="contenedorLogin">
         <form className="formLogin" onSubmit={handleSubmit}>
@@ -23,5 +22,7 @@ return (
         </form>
     </div>
 )
+}
+
 
 export default Login;
