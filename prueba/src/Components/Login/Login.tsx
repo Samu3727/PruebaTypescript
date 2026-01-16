@@ -1,5 +1,6 @@
 import { useState  } from "react";
 import '../Styles/Login.css';
+import { useNavigate } from "react-router-dom";
 
 interface Loginprops {
 
@@ -17,6 +18,8 @@ export const Login = ({ onLoginSuccess }: Loginprops) => {
         onLoginSuccess({ correo, contrasena });
     }
 
+    const navigate = useNavigate();
+
     return (
 
     <div className="contenedorLogin">
@@ -26,6 +29,16 @@ export const Login = ({ onLoginSuccess }: Loginprops) => {
             <input type="password" value={contrasena} onChange={(e) => setContrasena(e.target.value)} placeholder="Contraseña" />
             <button type="submit">Ingresar</button>
         </form>
+         <p style={{ textAlign: 'center', marginTop: '1rem' }}>
+          ¿No tienes cuenta?{" "}
+          <button 
+            type="button" 
+            style={{ background: 'none', border: 'none', color: '#667eea', cursor: 'pointer', textDecoration: 'underline' }}
+            onClick={() => navigate("/register")}
+          >
+            Regístrate
+          </button>
+        </p>
     </div>
 )
 }
