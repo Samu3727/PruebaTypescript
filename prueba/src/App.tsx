@@ -30,6 +30,17 @@ function App() {
   }
 
   return (
+
+    if (!isAuthenticated) {
+
+      return <Login onLoginSuccess={handleLoginSuccess} />
+    }
+
+    <>
+      <div>Bienvenido, {currentUser?.correo}</div>
+      <button onClick={handleLogout}>Cerrar Sesión</button>
+    </>
+
     <>
       <div>
         <a href="https://vite.dev" target="_blank">
