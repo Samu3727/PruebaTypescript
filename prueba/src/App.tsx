@@ -2,9 +2,21 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { Login } from './Components/Login/Login'
+
+
+interface UserData {
+
+  correo: string;
+  contrasena: string;
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState<UserData | null>(null);
+
+  
 
   return (
     <>
