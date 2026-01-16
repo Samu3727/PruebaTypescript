@@ -37,7 +37,7 @@ const RegisterComponent = ({ onSubmit }: Props) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!passwordRegex.test(password)) {
-            alert("La contraseña debe tener mayúscula y número");
+            alert("La contraseña debe al menos 6 caracteres, una mayúscula y un número");
             return;
         }
 
