@@ -29,17 +29,18 @@ function App() {
     setIsAuthenticated(false);
   }
 
-  return (
+  if (!isAuthenticated) {
 
-    if (!isAuthenticated) {
-
-      return <Login onLoginSuccess={handleLoginSuccess} />
+      return <Login onLoginSuccess={handleLoginSuccess} />;
     }
 
     <>
       <div>Bienvenido, {currentUser?.correo}</div>
       <button onClick={handleLogout}>Cerrar Sesión</button>
     </>
+
+  return (
+
 
     <>
       <div>

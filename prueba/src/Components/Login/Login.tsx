@@ -1,7 +1,12 @@
 import { useState  } from "react";
 import '../Styles/Login.css';
 
-export const Login = () =>{
+interface Loginprops {
+
+    onLoginSuccess: (userData: { correo: string; contrasena: string }) => void;
+}
+
+export const Login = ({ onLoginSuccess }: Loginprops) => {
 
     const [correo, setCorreo] = useState('');
     const [contrasena, setContrasena] = useState('');
@@ -9,6 +14,7 @@ export const Login = () =>{
     const handleSubmit = (e: React.FormEvent) => {
 
         e.preventDefault();
+        onLoginSuccess({ correo, contrasena });
     }
 
     return (
