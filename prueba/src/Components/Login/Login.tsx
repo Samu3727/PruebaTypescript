@@ -11,3 +11,15 @@ export const Login = () =>{
         e.preventDefault();
     }
 }
+
+return (
+
+    <div className="contenedorLogin">
+        <form className="formLogin" onSubmit={handleSubmit}>
+            <h2>Iniciar Sesión</h2>
+            <input type="email" value={correo} onChange={(e) => setCorreo(e.target.value)} placeholder="Correo electrónico" />
+            <input type="password" value={contrasena} onChange={(e) => setContrasena(e.target.value)} placeholder="Contraseña" />
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+)
