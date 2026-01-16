@@ -72,22 +72,22 @@ const RegisterComponent = ({ onSubmit }: Props) => {
         <form className={styles.form} onSubmit={handleSubmit}>
             <aside>
                 <label>Nombre</label>
-                <input value={name} onChange={e => setName(e.target.value)} required />
+                <input value={name} onChange={e => setName(e.target.value)} placeholder="Nombre" required />
             </aside>
 
             <aside>
                 <label>Email</label>
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+                <input type="email" value={email} placeholder="correo" onChange={e => setEmail(e.target.value)} required />
             </aside>
 
             <aside>
                 <label>Contraseña</label>
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+                <input type="password" value={password} placeholder="Contraseña" onChange={e => setPassword(e.target.value)} required />
             </aside>
 
             <aside>
                 <label>Confirmar Contraseña</label>
-                <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required />
+                <input type="password" value={confirmPassword} placeholder="Confirmar Contraseña" onChange={e => setConfirmPassword(e.target.value)} required />
             </aside>
 
             <aside>
