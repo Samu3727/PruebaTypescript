@@ -22,6 +22,13 @@ function App() {
     setIsAuthenticated(true);
   }
 
+  const handleLogout = () => {
+
+    localStorage.removeItem('currentUser');
+    setCurrentUser(null);
+    setIsAuthenticated(false);
+  }
+
   return (
     <>
       <div>
