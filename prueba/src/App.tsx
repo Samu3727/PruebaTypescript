@@ -16,7 +16,11 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState<UserData | null>(null);
 
-  
+  const handleLoginSuccess = (userData: UserData) => {
+
+    setCurrentUser(userData);
+    setIsAuthenticated(true);
+  }
 
   return (
     <>
