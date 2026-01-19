@@ -1,9 +1,9 @@
 export const login = async (req, res) => {
 
     try {
-        const { username, password } = req.body;
+        const { correo, contrasena } = req.body;
 
-        if (username === 'admin' && password === 'password') {
+        if (correo === 'admin' && contrasena === 'password') {
             res.status(200).json({ message: 'Login exitoso' });
         } else {
             res.status(401).json({ message: 'Credenciales inválidas' });
