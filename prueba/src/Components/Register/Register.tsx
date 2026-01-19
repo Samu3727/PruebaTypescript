@@ -4,24 +4,27 @@ import styles from "./register.module.css";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const handleRegister = (user: User): boolean => {
-  const storedUsers = localStorage.getItem("users");
-  const users: User[] = storedUsers ? JSON.parse(storedUsers) : [];
+    // También guardar en localStorage para que funcione localmente
+    const storedUsers = localStorage.getItem("users");
+    const users: User[] = storedUsers ? JSON.parse(storedUsers) : [];
 
-  const exists = users.some(u => u.email === user.email);
-  if (exists) {
-    alert("Este email ya está registrado");
-    return false;
-  }
+    const exists = users.some(u => u.email === user.email);
+    if (exists) {
+      return false;
+    }
 
-  users.push(user);
-  localStorage.setItem("users", JSON.stringify(users));
+    users.push(user);
+    localStorage.setItem("users", JSON.stringify(users));
 
-  alert("Registro exitoso");
-  return true;
-};
-
-const navigate = useNavigate();
+    // Redirigir al login después del registro
+    setTimeout(() => {
+      navigate("/login");
+    }, 500);
+    return true;
+  };
 
   return (
     <main className={styles.container}>
