@@ -30,7 +30,7 @@ const RegisterComponent = ({ onSubmit }: Props) => {
         setHobbies(hobbies.filter((_, i) => i !== index));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
@@ -51,19 +51,41 @@ const RegisterComponent = ({ onSubmit }: Props) => {
             return;
         }
 
-        const success = onSubmit({
+        const userData = {
             name,
             email,
             password,
             hobbies: hobbies.filter(h => h.trim())
-        });
+        };
 
-        if (success) {
-            setName("");
-            setEmail("");
-            setPassword("");
-            setConfirmPassword("");
-            setHobbies([""]);
+        try {
+            const response = await fetch('http://localhost:3000/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.message || 'Error en el registro');
+                return;
+            }
+
+            const success = onSubmit(userData);
+
+            if (success) {
+                setName("");
+                setEmail("");
+                setPassword("");
+                setConfirmPassword("");
+                setHobbies([""]);
+            }
+        } catch (error) {
+            console.error('Error al registrar:', error);
+            alert('Error de conexión con el servidor');
         }
     };
 
