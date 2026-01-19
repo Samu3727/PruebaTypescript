@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1768849678322,
+    "name": "Carlos García",
+    "email": "carlos@test.com",
+    "password": "Password123",
+    "hobbies": [
+      "programación",
+      "fútbol"
+    ],
+    "createdAt": "2026-01-19T19:07:58.322Z"
+  }
+]
