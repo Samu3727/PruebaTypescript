@@ -9,5 +9,25 @@
       "fútbol"
     ],
     "createdAt": "2026-01-19T19:07:58.322Z"
+  },
+  {
+    "id": 1768857908453,
+    "name": "hola",
+    "email": "cmcmcm@gmail.com",
+    "password": "Mau1023368792",
+    "hobbies": [
+      "leer"
+    ],
+    "createdAt": "2026-01-19T21:25:08.453Z"
+  },
+  {
+    "id": 1768857936136,
+    "name": "hola",
+    "email": "testtesttest@gmail.com",
+    "password": "Mau1023368792",
+    "hobbies": [
+      "leer"
+    ],
+    "createdAt": "2026-01-19T21:25:36.136Z"
   }
 ]
