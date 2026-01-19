@@ -23,24 +23,24 @@ const readUsers = () => {
 export const login = async (req, res) => {
 
     try {
-        const { correo, contrasena } = req.body;
+        const { email, password } = req.body;
 
-        if (!correo || !contrasena) {
-            return res.status(400).json({ message: 'Correo y contraseña son requeridos' });
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Email y contraseña son requeridos' });
         }
 
         // Leer los usuarios del archivo
         const users = readUsers();
 
         // Buscar el usuario por email
-        const user = users.find(u => u.email === correo);
+        const user = users.find(u => u.email === email);
 
         if (!user) {
             return res.status(401).json({ message: 'Credenciales inválidas' });
         }
 
         // Validar contraseña
-        if (user.password !== contrasena) {
+        if (user.password !== password) {
             return res.status(401).json({ message: 'Credenciales inválidas' });
         }
 
