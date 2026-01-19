@@ -14,8 +14,6 @@ app.use(cors());
 app.use('/api/register', registerRoutes);
 app.use('/api/login', loginRoutes);
 
-
-
 app.listen(PORT, () => {
     console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
     console.log(`📝 Registro: POST http://localhost:${PORT}/api/register`);
